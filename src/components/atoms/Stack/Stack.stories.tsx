@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
-import Stack from "../components/Stack";
+import Stack from "./Stack";
 
 type StoryProps = ComponentProps<typeof Stack> & {
     numberOfChildren: number;
@@ -8,7 +8,7 @@ type StoryProps = ComponentProps<typeof Stack> & {
 
 const meta: Meta<StoryProps> = {
     title: "Components/Stack",
-    tags : ["autodocs"],
+    tags: ["autodocs"],
     component: Stack,
     argTypes: {
         numberOfChildren: {

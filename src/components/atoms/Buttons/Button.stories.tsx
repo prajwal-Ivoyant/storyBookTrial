@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import type { ComponentProps } from "react";
-import { Button } from "../components/Button";
+import { Button } from "./Button";
 
 type StoryProps = ComponentProps<typeof Button> & {
     buttonText: string;
 };
 
 const meta: Meta<StoryProps> = {
-    title: "Components/Button",
+    title: "Atoms/Button",
     tags: ["autodocs"],
     component: Button,
 
