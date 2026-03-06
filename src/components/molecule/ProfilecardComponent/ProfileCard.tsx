@@ -1,5 +1,5 @@
-import { Avatar } from "../atoms/Avatar/Avatar";
-import { Button } from "../atoms/Buttons/Button";
+import { Avatar } from "../../atoms/Avatar/Avatar";
+import { Button } from "../../atoms/Buttons/Button";
 
 type ProfileCardProps = {
     name: string;
@@ -19,19 +19,20 @@ export const ProfileCard = ({ name, role, avatar }: ProfileCardProps) => {
                 fontFamily: "sans-serif",
             }}
         >
- 
+
             <Avatar src={avatar} size="lg" alt={name} />
 
             <h3 style={{ marginTop: "10px" }}>{name}</h3>
             <p style={{ color: "gray", fontSize: "14px" }}>{role}</p>
 
+
             <Button
-                variant="primary"
-                size="sm"
+                label="Follow me"
+                size="lg"
+                category="primary"
                 onClick={() => console.log("Button Clicked")}
-            >
-                Follow
-            </Button>
+            />
+
         </div>
     )
 }

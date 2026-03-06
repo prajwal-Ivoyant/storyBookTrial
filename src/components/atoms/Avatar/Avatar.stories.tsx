@@ -10,6 +10,10 @@ const meta: Meta<typeof Avatar> = {
             control: "select",
             options: ["sm", "md", "lg"],
         },
+        shape: {
+            control: "select",
+            options: ['circle', 'square'],
+        }
     }
 };
 
@@ -21,11 +25,18 @@ export const DefaultAvatar: Story = {
     args: {
         src: 'https://thumbs.dreamstime.com/b/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.jpg',
         size: 'md',
-
     }
 }
 
-export const NamedAvatar: Story = {
+export const SquaredAvatar: Story = {
+    args: {
+        shape: 'square',
+        src: 'https://thumbs.dreamstime.com/b/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.jpg',
+        size: 'md',
+    }
+}
+
+export const PictureAvatar: Story = {
     args: {
         src: 'https://i.pravatar.cc/100',
         size: 'md',

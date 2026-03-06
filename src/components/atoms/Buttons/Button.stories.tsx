@@ -1,64 +1,69 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
-import type { ComponentProps } from "react";
+import { fn } from "storybook/test";
 import { Button } from "./Button";
+import { GoogleOutlined } from '@ant-design/icons';
 
-type StoryProps = ComponentProps<typeof Button> & {
-    buttonText: string;
-};
-
-const meta: Meta<StoryProps> = {
+const meta: Meta<typeof Button> = {
     title: "Atoms/Button",
-    tags: ["autodocs"],
     component: Button,
+    tags: ["autodocs"],
 
     argTypes: {
-        variant: {
-            options: ["primary", "secondary"],
+        category: {
+            options: ["primary", "default", "dashed"],
             control: { type: "select" },
         },
+
         size: {
             options: ["sm", "md", "lg"],
             control: { type: "select" },
         },
     },
 
-
+    args: {
+        onClick: fn(),
+    },
 };
 
 export default meta;
 
-type Story = StoryObj<StoryProps>;
+type Story = StoryObj<typeof Button>;
 
 export const Primary: Story = {
     args: {
-        buttonText: "Click the button!",
-        variant: "primary",
+        label: "Primary Button",
+        category: "primary",
         size: "lg",
-        onClick: () => console.log("Working1!")
     },
-    render: ({ buttonText, ...args }) => (
-        <Button {...args}>{buttonText}</Button>
-    ),
 };
 
-export const Secondary: Story = {
+export const Default: Story = {
     args: {
-        buttonText: "Click the button 2!",
-        variant: "secondary",
+        label: "Default Button",
+        category: "default",
         size: "sm",
-        onClick: () => console.log("Working2!")
     },
-    render: ({ buttonText, ...args }) => (
-        <Button {...args}>{buttonText}</Button>
-    ),
+};
+
+export const Dashed: Story = {
+    args: {
+        label: "Dashed Button",
+        category: "dashed",
+        size: "md",
+    },
 };
 
 export const TestClick: Story = {
     args: {
-        children: "Test Button",
-        variant: "primary",
+        label: "Click Me",
+        category: "primary",
         size: "md",
         onClick: () => alert("Working!"),
+    },
+};
+
+export const IconButton: Story = {
+    args: {
+        icon: <GoogleOutlined />,
     },
 };

@@ -7,7 +7,7 @@ type StoryProps = ComponentProps<typeof Stack> & {
 };
 
 const meta: Meta<StoryProps> = {
-    title: "Components/Stack",
+    title: "Atoms/Stack",
     tags: ["autodocs"],
     component: Stack,
     argTypes: {

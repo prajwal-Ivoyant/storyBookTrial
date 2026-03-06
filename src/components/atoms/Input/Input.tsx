@@ -1,83 +1,49 @@
-import type { CSSProperties, HTMLInputAutoCompleteAttribute, PropsWithChildren } from "react";
+import { Form, Input } from "antd";
+import type { Rule } from "antd/es/form";
 
-
-type Variant = "primary" | "secondary";
-type Size = "sm" | "md" | "lg";
-
-type InputProps = PropsWithChildren<{
+interface CustomInputProps {
     label: string;
-    placeholder: string;
-    variant: Variant;
-    size: Size;
-    error: string;
-    disabled: boolean;
-}>;
+    name: string;
+    placeholder?: string;
+    InputType: "text" | "email" | "number";
+    required?: boolean;
+    disabled?: boolean;
+}
 
-export const Input = ({
+const getValidationRule = (InputType: "text" | "email" | "number"): Rule => {
+    switch (InputType) {
+        case "email":
+            return { type: "email", message: "Enter a valid email" };
+
+        case "number":
+            return { pattern: /^[0-9]+$/, message: "Enter a valid number" };
+
+        default:
+            return { pattern: /^[a-zA-Z\s]+$/, message: "Enter valid text" };
+    }
+};
+
+export const CustomInput = ({
     label,
+    name,
     placeholder,
-    error,
+    InputType = "text",
+    required = true,
     disabled = false,
-    variant = "primary",
-    size = "lg",
-}: InputProps) => {
-    const variantStyles: Record<Variant, CSSProperties> = {
-        primary: {
-            border: "2px solid blue",
-        },
-        secondary: {
-            border: "2px solid gray",
-        },
-    };
-
-    const sizeStyles: Record<Size, CSSProperties> = {
-        sm: {
-            padding: "0.4rem",
-            fontSize: "0.8rem",
-        },
-        md: {
-            padding: "0.6rem",
-            fontSize: "1rem",
-        },
-        lg: {
-            padding: "0.8rem",
-            fontSize: "1.2rem",
-        },
-    };
-
-
-
-
+}: CustomInputProps) => {
     return (
-        <>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                <label>{label}</label>
-
-                <input
-                    type="text"
-                    placeholder={placeholder}
-                    disabled={disabled}
-
-                    style={{
-                        borderRadius: "6px",
-                        outline: "none",
-                        opacity: disabled ? 0.6 : 1,
-                        cursor: disabled ? "not-allowed" : "text",
-                        ...variantStyles[variant],
-                        ...sizeStyles[size],
-                    }}
-
-                />
-
-                {error && (
-
-                    <span style={{ color: "red", fontSize: "0.8rem" }}>
-                        {error}
-                    </span>
-                )}
-
-
-            </div>
-        </>
+        <Form.Item
+            label={label}
+            name={name}
+            rules={[
+                ...(required
+                    ? [{ required: true, message: `Please enter ${label}` }]
+                    : []),
+                getValidationRule(InputType),
+            ]}
+        >
+            <Input type={InputType} placeholder={placeholder} disabled={disabled} />
+        </Form.Item>
     );
 };
+

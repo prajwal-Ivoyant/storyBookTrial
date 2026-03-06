@@ -1,63 +1,50 @@
-import type { CSSProperties, PropsWithChildren } from "react";
+import type { CSSProperties, ReactNode } from "react";
+import { Button as AntDButton } from "antd";
 
-
-type Variant = "primary" | "secondary";
 type Size = "sm" | "md" | "lg";
+type Category = "primary" | "default" | "dashed";
 
-type ButtonProps = PropsWithChildren<{
-    onClick: () => void;
-    variant: Variant;
-    size: Size;
-
-}>;
+type ButtonProps = {
+    onClick?: () => void;
+    label: string;
+    category?: Category;
+    size?: Size;
+    icon: ReactNode
+};
 
 export const Button = ({
-    children,
     onClick,
-    variant = "primary",
+    label,
+    category = "default",
     size = "md",
-
+    icon
 }: ButtonProps) => {
-    const variantStyles: Record<Variant, CSSProperties> = {
-        primary: {
-            backgroundColor: "blue",
-            color: "white",
-            borderRadius: "10px",
-        },
-        secondary: {
-            backgroundColor: "gray",
-            color: "white",
-            borderRadius: '10px'
-        },
-    };
 
     const sizeStyles: Record<Size, CSSProperties> = {
         sm: {
-            padding: "0.4rem 0.8rem",
-            fontSize: "0.8rem",
+            padding: "4px 10px",
+            fontSize: "12px",
         },
         md: {
-            padding: "0.6rem 1rem",
-            fontSize: "1rem",
+            padding: "6px 16px",
+            fontSize: "14px",
         },
         lg: {
-            padding: "0.8rem 1.4rem",
-            fontSize: "1.2rem",
+            padding: "8px 20px",
+            fontSize: "16px",
         },
     };
 
-
-
     return (
-        <button
+        <AntDButton
+            type={category}
             onClick={onClick}
-
+            icon={icon}
             style={{
-                ...variantStyles[variant],
                 ...sizeStyles[size],
             }}
         >
-            {children}
-        </button>
+            {label}
+        </AntDButton>
     );
 };

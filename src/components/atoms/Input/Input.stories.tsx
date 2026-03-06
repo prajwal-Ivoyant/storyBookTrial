@@ -1,59 +1,57 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Input } from "./Input";
+import { CustomInput } from "./Input"
 
-const meta: Meta<typeof Input> = {
-    title: 'components/Input',
+const meta: Meta<typeof CustomInput> = {
+    title: "Atoms/Input",
+    component: CustomInput,
     tags: ["autodocs"],
-    component: Input,
+
     argTypes: {
-        variant: {
-            control: "select",
-            options: ['primary', 'secondary']
+        InputType: {
+            control: { type: "select" },
+            options: ["text", "email", "number"],
         },
-        size: {
-            control: "select",
-            options: ["sm", "md", "lg"],
-        },
-        disabled: {
-            control: "boolean",
-        }
-    }
-}
+
+
+    },
+};
 
 export default meta;
 
-type Story = StoryObj<typeof Input>;
+type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const DefaultAndRequire: Story = {
     args: {
-        label: "enter ur Name",
-        placeholder: "type here",
-        variant: "primary",
-        size: 'md',
+        label: "Enter your Name",
+        placeholder: "Type here",
+        required: true,
+        name: ""
     },
-}
+};
 
-export const WithError: Story = {
+export const Email: Story = {
     args: {
-        label: "enter ur Name",
-        placeholder: "type here",
-        error: "oh no Error"
-    }
-}
+        label: "Enter your Email",
+        placeholder: "Type here",
+        InputType: "email",
+        name: ""
+    },
+};
+
+export const Number: Story = {
+    args: {
+        label: "Enter your Phone Number",
+        placeholder: "Type here",
+        InputType: "number",
+        name: ""
+    },
+};
 
 export const Disabled: Story = {
     args: {
-        label: "enter ur Name",
-        placeholder: "type here",
+        label: "Enter your Name",
+        placeholder: "Type here",
         disabled: true,
-    }
-}
-
-export const LargeSecondary: Story = {
-    args: {
-        label: "enter ur Name",
-        placeholder: "type here",
-        variant: "primary",
-        size: 'lg',
-    }
-}
+        name: ""
+    },
+};

@@ -1,26 +1,24 @@
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { ReactNode } from "react";
 
-import type { TaskData } from './Task';
+import { Provider } from "react-redux";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-import { Provider } from 'react-redux';
-
-import { configureStore, createSlice } from '@reduxjs/toolkit';
-
-import TaskList from './TaskList';
-
-import * as TaskStories from './Task.stories';
+import type { TaskData } from "./Task";
+import TaskList from "./TaskList";
+import * as TaskStories from "./Task.stories";
 
 export const MockedState = {
     tasks: [
-        { ...TaskStories.Default.args.task, id: '1', title: 'Task 1' },
-        { ...TaskStories.Default.args.task, id: '2', title: 'Task 2' },
-        { ...TaskStories.Default.args.task, id: '3', title: 'Task 3' },
-        { ...TaskStories.Default.args.task, id: '4', title: 'Task 4' },
-        { ...TaskStories.Default.args.task, id: '5', title: 'Task 5' },
-        { ...TaskStories.Default.args.task, id: '6', title: 'Task 6' },
+        { ...TaskStories.Default.args.task, id: "1", title: "Task 1" },
+        { ...TaskStories.Default.args.task, id: "2", title: "Task 2" },
+        { ...TaskStories.Default.args.task, id: "3", title: "Task 3" },
+        { ...TaskStories.Default.args.task, id: "4", title: "Task 4" },
+        { ...TaskStories.Default.args.task, id: "5", title: "Task 5" },
+        { ...TaskStories.Default.args.task, id: "6", title: "Task 6" },
     ] as TaskData[],
-    status: 'idle',
+    status: "idle",
     error: null,
 };
 
@@ -29,7 +27,7 @@ const Mockstore = ({
     children,
 }: {
     taskboxState: typeof MockedState;
-    children: React.ReactNode;
+    children: ReactNode;
 }) => (
     <Provider
         store={configureStore({
@@ -53,7 +51,6 @@ const Mockstore = ({
         {children}
     </Provider>
 );
-
 const meta = {
     component: TaskList,
     title: 'TaskList',

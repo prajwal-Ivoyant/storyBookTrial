@@ -1,27 +1,36 @@
+import { Avatar as AntDAvatar } from "antd";
+
+type AvatarSize = "sm" | "md" | "lg";
+
 type AvatarProps = {
     src: string;
-    size?: 'sm' | 'md' | 'lg';
+    size?: AvatarSize;
+    shape?: "square" | "circle";
     alt?: string;
-}
+};
 
-export const Avatar = ({ src, size = 'md', alt = 'avatar' }: AvatarProps) => {
-    const sizes = {
-        sm: 40,
-        md: 50,
-        lg: 62,
-    }
+export const Avatar = ({
+    src,
+    size = "md",
+    shape = "circle",
+    alt = "avatar",
+}: AvatarProps) => {
+
+    const sizeMap: Record<AvatarSize, number> = {
+        sm: 32,
+        md: 40,
+        lg: 64,
+    };
 
     return (
-        <img
+        <AntDAvatar
             src={src}
+            size={sizeMap[size]}
+            shape={shape}
             alt={alt}
             style={{
-                width: sizes[size],
-                height: sizes[size],
-                borderRadius: "50%",
-                objectFit: "cover",
-
-
-            }} />
-    )
-}
+                border: "0.5px solid black",
+            }}
+        />
+    );
+};
