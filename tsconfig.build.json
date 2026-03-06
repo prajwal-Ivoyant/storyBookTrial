@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "declaration": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "strict": true
+  },
+  "include": [
+    "src/components/**/*",
+    "src/index.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/redux/**/*",
+    "src/components/Task/**/*",
+    "**/*.stories.tsx",
+    "**/*.test.tsx",
+    "src/main.tsx",
+    "src/App.tsx"
+  ]
+}

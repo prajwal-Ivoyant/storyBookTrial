@@ -1,6 +1,6 @@
 {
   "name": "prajwal-storybook-ui",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -16,19 +16,16 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "chromatic": "npx chromatic --project-token=chpt_1f9703afc83f3a7"
   },
-  "dependencies": {
-    "@reduxjs/toolkit": "^2.11.2",
-    "antd": "^6.3.1",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "react-redux": "^9.2.0"
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.0.1",

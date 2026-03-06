@@ -9,7 +9,7 @@ type ButtonProps = {
     label: string;
     category?: Category;
     size?: Size;
-    icon: ReactNode
+    icon?: ReactNode
 };
 
 export const Button = ({

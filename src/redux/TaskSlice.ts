@@ -1,4 +1,4 @@
-import type { TaskData } from "../components/task/Task";
+import type { TaskData } from "../components/Task/Task";
 
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
